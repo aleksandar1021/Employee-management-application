@@ -1,0 +1,132 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#statisticContainer{
+  margin-top: 20px;
+}
+
+#statisticContainer h1{
+  color: greenyellow;
+}
+
+
+#statistic{
+  display: flex;
+  flex-direction: row;
+  width: 370px;
+  margin: 0px auto;
+  margin-top: 10px;
+}
+
+
+body {
+  background-color: #212121;
+  color: #ffffff;
+  /* font-family: monospace, sans-serif; */
+  text-align: center;
+  padding: 30px;
+}
+
+/* Header */
+header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+button{
+  cursor: pointer;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+}
+.butonStyle{
+    cursor: pointer;
+}
+header nav {
+  margin: 20px 0;
+}
+
+header nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+header h2 {
+  font-size: 26px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.gradient-input {
+  background-color: #111;
+  color: white;
+  padding: 10px 16px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, #00f0ff, #ff00e0);
+  border-image-slice: 1;
+  font-size: 16px;
+  outline: none;
+}
+
+.gradient-input::placeholder {
+  color: #ccc;
+}
+
+.gradient-input:focus {
+  background-color: #1a1a1a;
+}
+
+
+/* Item Grid */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Item Card */
+.item-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #00f, #f0f) 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover {
+  transform: scale(1.03);
+}
+
+.item-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.item-card p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+
+
+
+
+
+
+
