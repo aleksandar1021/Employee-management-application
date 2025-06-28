@@ -29,14 +29,14 @@
     if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
         $file = $_FILES['image'];
         $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-        $maxSize = 2 * 1024 * 1024;
+        $maxSize = 10 * 1024 * 1024;
 
         if (!in_array($file['type'], $allowedTypes)) {
             $errors[] = "Image must be JPG, JPEG, or PNG.";
         }
 
         if ($file['size'] > $maxSize) {
-            $errors[] = "Image must be smaller than 2MB.";
+            $errors[] = "Image must be smaller than 10MB.";
         }
 
         if (empty($errors)) {
@@ -73,6 +73,16 @@
             $stmt->bindParam(':password', $hashedPassword);
             $stmt->bindParam(':id', $userId);
         } elseif ($imagePath) {
+            $query = "SELECT * FROM user WHERE id_user = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$userId]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $image = "../".$user['user_image'];
+            if (file_exists($image)) {
+                unlink($image);
+            }
+        
             $stmt = $conn->prepare("UPDATE user SET user_image = :image WHERE id_user = :id");
             $stmt->bindParam(':image', $imagePath);
             $stmt->bindParam(':id', $userId);

@@ -88,6 +88,18 @@
     try {
         $id_user = getUser()->id_user;
 
+        if($imagePath != null){
+            $query = "SELECT * FROM tasks WHERE id_task = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$id_task]);
+            $task = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $image = "../".$task['image'];
+            if (file_exists($image)) {
+                unlink($image);
+            }
+        }
+        
         $sql = "
             UPDATE tasks SET 
                 id_user = :id_user,
@@ -117,6 +129,8 @@
         }
 
         $stmt->execute();
+
+       
 
         unset($_SESSION['old']);
         $_SESSION['success'] = "Task successfully updated.";
