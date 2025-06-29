@@ -27,7 +27,11 @@
     }
 
     function getUser(){
-        return $_SESSION["user"];
+        if(isset($_SESSION["user"])){
+            return $_SESSION["user"];
+        }else{
+            return null;
+        }
     }
 
     function getEmployed(){
@@ -128,8 +132,10 @@
         global $conn;
         $user = getUser();
         //var_dump($user);
-        if(!$user->is_active){
-            header("Location: ?page=setPassword");
+        if(isset($user)){
+            if(!$user->is_active){
+                header("Location: ?page=setPassword");
+            }
         }
     }
 

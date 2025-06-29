@@ -51,7 +51,9 @@ input[type="submit"] {
 header nav {
   margin: 20px 0;
 }
-
+.expired-task {
+  border-image: linear-gradient(45deg, rgb(226, 5, 5), rgb(181, 1, 1)) 2 !important;
+}
 header nav a {
   color: #ffffff;
   text-decoration: none;

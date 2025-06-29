@@ -1,6 +1,7 @@
 <?php 
   include "models/functions.php";
-
+  isLoggedUser();
+  isFirstLogin();
 ?>
 
 <html lang="en">

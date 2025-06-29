@@ -67,7 +67,6 @@
                                                 </div>
                                         <?php unset($_SESSION['error']); ?>
                                         <?php endif; ?>
-                                        <a href="?page=admin&adminPage=addPosition"><div class="btn btn-primary">Add new</div></a>
 
                                     </div>
                                 </div>

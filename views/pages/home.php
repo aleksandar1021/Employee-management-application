@@ -1,7 +1,5 @@
 <?php
-    isLoggedUser();
     $tasks = getTasksByUserId();
-    isFirstLogin();
 ?>
 
 
@@ -62,9 +60,15 @@
     
   <?php 
   if(count($tasks)){
-    foreach($tasks as $i => $t){ ?>
-      <div class="task-card">
+    foreach($tasks as $i => $t){ 
+      $expired = "";
+      $isExpired = strtotime($t->due_date) < strtotime(date('Y-m-d'));
+      $cardClass = "task-card" . ($isExpired ? " expired-task" : "");
+      $expired = $isExpired ? "<p style='color:red;'>EXPIRED</p></br>" : "";
+      ?>
+      <div class="<?= $cardClass ?>">
           <div class="task-info">
+            <?= $expired ?>
             <h3><?= $t->title ?></h3>
             <p><strong>Description:</strong> <?= $t->description ?> </p>
             <p><strong>Task name:</strong> <spam style="color:greenyellow"><?= $t->name ?></spam> </p>
