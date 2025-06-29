@@ -2,6 +2,7 @@
     session_start();
     include "../config/connection.php";
     include "./functions.php";
+    include "./sendEmail.php";
 
     $errors = [];
     $old = [];
@@ -130,7 +131,26 @@
 
         $stmt->execute();
 
-       
+        $user = getUserById($employed);
+        $issuer = getUserById($id_user);
+        $task2 = getTask($id_task);
+
+        //var_dump($task2);
+
+        $message = "Respected {$user->firstname} {$user->lastname},\r\n\r\n" .
+           "your task has been changed:\r\n\r\n" .
+           "Name:        $task2->name\r\n" .
+           "Title:       $title\r\n" .
+           "Description: $description\r\n" .
+           "Date Due:    $date_due\r\n" .
+           "Priority:    $priority\r\n" .
+           "Issued by:   {$issuer->firstname} {$issuer->lastname}\r\n\r\n" .
+           "Please complete it within the given time.\r\n\r\n" .
+           "Best regards,\r\n" .
+           "Task Management System";
+
+
+        sendMail($user->email, "Update task", $message);
 
         unset($_SESSION['old']);
         $_SESSION['success'] = "Task successfully updated.";

@@ -2,6 +2,7 @@
 session_start();
 include "../config/connection.php";
 include "./functions.php";
+include "./sendEmail.php";
 
 
 $errors = [];
@@ -91,6 +92,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':pwd', $hashedPassword);
 
         $stmt->execute();
+
+        $message = "Respected\n" .
+                    $old['firstname'] . " " . $old['lastname'] . "\n" .
+                    "Your account was created with the following credentials:\n" .
+                    "email: " . $old['email'] . "\n" .
+                    "password: " . $old['pwd'] . "\n\n" .
+                    "Note: The password given by the administrator on the device is one-time and you must change it the first time you log in to the application.";
+
+
+        sendMail($old['email'], "Your account is create", $message);
+
 
         unset($_SESSION['old']);
         header("Location: ../index.php?page=admin&adminPage=users");

@@ -112,6 +112,17 @@
         return $conn->query($query)->fetchAll();
     }
 
+    function getTask($id){
+        global $conn;
+        $query = "SELECT *, t.created_at AS date_of_create 
+                FROM tasks t 
+                JOIN user u ON u.id_user = t.id_user 
+                WHERE t.id_user = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
     function findUserById($id){
         global $conn;
         $query = "SELECT * FROM user WHERE id_user = :id";
@@ -137,6 +148,16 @@
                 header("Location: ?page=setPassword");
             }
         }
+    }
+
+    function getUserById($id_user) {
+        global $conn;
+        $query = "SELECT * FROM user WHERE id_user = :id_user";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
     function taskExists($id_task) {

@@ -2,6 +2,7 @@
     session_start();
     include "../config/connection.php";
     include "./functions.php";
+    include "./sendEmail.php";
 
     $errors = [];
     $old = [];
@@ -96,6 +97,25 @@
         $stmt->bindParam(":name", $name, PDO::PARAM_STR);
 
         $stmt->execute();
+
+        $user = getUserById($employed);
+        $issuer = getUserById($id_user);
+
+        $message = "Respected {$user->firstname} {$user->lastname},\r\n\r\n" .
+           "You have been assigned a new task with the following details:\r\n\r\n" .
+           "Name:        $name\r\n" .
+           "Title:       $title\r\n" .
+           "Description: $description\r\n" .
+           "Date Due:    $date_due\r\n" .
+           "Priority:    $priority\r\n" .
+           "Issued by:   {$issuer->firstname} {$issuer->lastname}\r\n\r\n" .
+           "Please complete it within the given time.\r\n\r\n" .
+           "Best regards,\r\n" .
+           "Task Management System";
+
+
+        sendMail($user->email, "New task", $message);
+
 
         unset($_SESSION['old']);
         $_SESSION['success'] = "Task successfully created.";
