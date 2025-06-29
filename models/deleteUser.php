@@ -1,6 +1,8 @@
 <?php
-session_start();
-include "../config/connection.php";
+    session_start();
+    include "../config/connection.php";
+    include "./sendEmail.php";
+    include "./functions.php";
 
 if (!isset($_SESSION['user']) || $_SESSION['user']->id_role != 4) {
     header("Location: ?page=home");
@@ -20,6 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_user'])) {
 
         $stmtUser = $conn->prepare("DELETE FROM user WHERE id_user = :id_user");
         $stmtUser->bindParam(":id_user", $id);
+
+        $user = getUserById($id);
+
+        $message = "Respected {$user->firstname} {$user->lastname},\r\n\r\n" .
+                "Your account whth email: {$user->email} has been deleted.";
+
+        sendMail($user->email, "Deleted account", $message);
+
+
         $stmtUser->execute();
 
         header("Location: ../index.php?page=admin&adminPage=users");

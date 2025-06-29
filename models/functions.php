@@ -112,14 +112,14 @@
         return $conn->query($query)->fetchAll();
     }
 
-    function getTask($id){
+    function getTask($id_task) {
         global $conn;
         $query = "SELECT *, t.created_at AS date_of_create 
                 FROM tasks t 
                 JOIN user u ON u.id_user = t.id_user 
-                WHERE t.id_user = ?";
+                WHERE t.id_task = ?";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$id_task]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 

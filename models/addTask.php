@@ -103,12 +103,12 @@
 
         $message = "Respected {$user->firstname} {$user->lastname},\r\n\r\n" .
            "You have been assigned a new task with the following details:\r\n\r\n" .
-           "Name:        $name\r\n" .
-           "Title:       $title\r\n" .
+           "Name: $name\r\n" .
+           "Title: $title\r\n" .
            "Description: $description\r\n" .
-           "Date Due:    $date_due\r\n" .
-           "Priority:    $priority\r\n" .
-           "Issued by:   {$issuer->firstname} {$issuer->lastname}\r\n\r\n" .
+           "Date Due: $date_due\r\n" .
+           "Priority: $priority\r\n" .
+           "Issued by: {$issuer->firstname} {$issuer->lastname}\r\n\r\n" .
            "Please complete it within the given time.\r\n\r\n" .
            "Best regards,\r\n" .
            "Task Management System";
