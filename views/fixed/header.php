@@ -11,6 +11,7 @@
   <title>Employee management application</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/loginStyle.css" />
+  <link rel="icon" href="assets/images/web.png" type="image/png">
 
 </head>
 <body>

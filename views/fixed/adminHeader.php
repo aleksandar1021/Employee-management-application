@@ -20,6 +20,8 @@
     <link href="assets/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/admin/vendor/datatables/datatables.min.css" rel="stylesheet">
     <link href="assets/admin/css/master.css" rel="stylesheet">
+    <link rel="icon" href="assets/images/web.png" type="image/png">
+
 </head>
 
 <body>
