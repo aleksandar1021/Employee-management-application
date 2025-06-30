@@ -12,7 +12,7 @@
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'bookatable12345@gmail.com';
-            $mail->Password   = 'xbem iutk rgzu pkie';  
+            $mail->Password   = '';  // app-password
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
